@@ -21,22 +21,27 @@ namespace DAL.Repos
 
         public bool Delete(string id)
         {
-            throw new NotImplementedException();
+            var dbobj = Get(id);
+            db.Admins.Remove(dbobj);
+            return db.SaveChanges() > 0;
         }
 
         public List<Admin> Get()
         {
-            throw new NotImplementedException();
+            return db.Admins.ToList();
         }
 
         public Admin Get(string id)
         {
-            throw new NotImplementedException();
+            return db.Admins.Find(id);
         }
 
         public Admin Update(Admin obj)
         {
-            throw new NotImplementedException();
+            var dbobj = Get(obj.Id);
+            db.Entry(dbobj).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj;
+            return null;
         }
     }
 }
