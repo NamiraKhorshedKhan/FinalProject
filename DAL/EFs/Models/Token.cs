@@ -19,8 +19,7 @@ namespace DAL.EFs.Models
         [Required]
         public DateTime Creation { get; set; }
 
-        [Required]
-        public DateTime Expiration { get; set; }
+        public DateTime? Expiration { get; set; }
 
         [ForeignKey("Login")]
         public string LoginId { get; set; }

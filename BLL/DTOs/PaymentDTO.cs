@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    class PaymentDTO
+    public class PaymentDTO
     {
+        public string Id { get; set; }
+        public string BookingId { get; set; }
+        public float Amount { get; set; }
+        public DateTime DateTime { get; set; }
+        public string Status { get; set; }
+        public string CusId { get; set; }
+        public string ResId { get; set; }
     }
 }

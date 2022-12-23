@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    public class MenuDTO
+    public class RatingDTO
     {
         public string Id { get; set; }
+        public string CusId { get; set; }
         public string ResId { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public float Price { get; set; }
+        public int Rate { get; set; }
     }
 }

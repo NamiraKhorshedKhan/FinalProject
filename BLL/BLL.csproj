@@ -49,9 +49,13 @@
     <Compile Include="DTOs\BookingDTO.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\FeedbackDTO.cs" />
-    <Compile Include="DTOs\Logindto.cs" />
+    <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\MenuDTO.cs" />
     <Compile Include="DTOs\PaymentDTO.cs" />
+    <Compile Include="DTOs\RatingDTO.cs" />
+    <Compile Include="DTOs\RestaurantDTO.cs" />
+    <Compile Include="DTOs\ReviewDTO.cs" />
+    <Compile Include="DTOs\TokenDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

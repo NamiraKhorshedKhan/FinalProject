@@ -31,5 +31,9 @@ namespace DAL.EFs.Models
         public virtual Customer Customer { get; set; }
         public virtual Restaurant Restaurant { get; set; }
         public virtual List<Payment> Payments { get; set; }
+        public Booking()
+        {
+            Payments = new List<Payment>();
+        }
     }
 }
