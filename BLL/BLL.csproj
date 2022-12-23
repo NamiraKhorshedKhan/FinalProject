@@ -49,6 +49,7 @@
     <Compile Include="DTOs\BookingDTO.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\FeedbackDTO.cs" />
+    <Compile Include="DTOs\Logindto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
