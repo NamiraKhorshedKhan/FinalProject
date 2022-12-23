@@ -64,8 +64,8 @@
     <Compile Include="EFs\Models\Restaurant.cs" />
     <Compile Include="EFs\Models\Review.cs" />
     <Compile Include="EFs\Models\Token.cs" />
-    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Migrations\202212221446216_TablesAdded.cs" />
     <Compile Include="Migrations\202212221446216_TablesAdded.designer.cs">
       <DependentUpon>202212221446216_TablesAdded.cs</DependentUpon>
