@@ -51,6 +51,7 @@
     <Compile Include="DTOs\FeedbackDTO.cs" />
     <Compile Include="DTOs\Logindto.cs" />
     <Compile Include="DTOs\MenuDTO.cs" />
+    <Compile Include="DTOs\PaymentDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
