@@ -1,7 +1,5 @@
-﻿using DAL.EFs;
-using DAL.EFs.Models;
+﻿using DAL.EFs.Models;
 using DAL.Interfaces;
-using DAL.Respos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,33 +8,38 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class AdminRepo : Repo, IRepo<Admin, string, Admin>
+    internal class RestaurantRepo : Repo, IRepo<Restaurant, string, Restaurant>
     {
-        public Admin Add(Admin obj)
+        public Restaurant Add(Restaurant obj)
         {
-            db.Admins.Add(obj);
+            db.Restaurants.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
+        }
+
+        public Restaurant Add(RestaurantRepo obj)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Admins.Remove(dbobj);
+            db.Restaurants.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Admin> Get()
+        public List<Restaurant> Get()
         {
-            return db.Admins.ToList();
+            return db.Restaurants.ToList();
         }
 
-        public Admin Get(string id)
+        public Restaurant Get(string id)
         {
-            return db.Admins.Find(id);
+            return db.Restaurants.Find(id);
         }
 
-        public Admin Update(Admin obj)
+        public Restaurant Update(Restaurant obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

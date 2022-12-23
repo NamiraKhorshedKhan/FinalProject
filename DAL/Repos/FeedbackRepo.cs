@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class PaymentRepo : Repo, IRepo<Payment, string, Payment>
+    internal class FeedbackRepo : Repo, IRepo<Feedback, string, Feedback>
     {
-        public Payment Add(Payment obj)
+        public Feedback Add(Feedback obj)
         {
-            db.Payments.Add(obj);
+            db.Feedbacks.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
 
-        public Payment Add(PaymentRepo obj)
+        public Feedback Add(FeedbackRepo obj)
         {
             throw new NotImplementedException();
         }
@@ -25,21 +25,21 @@ namespace DAL.Respos
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Payments.Remove(dbobj);
+            db.Feedbacks.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Payment> Get()
+        public List<Feedback> Get()
         {
-            return db.Payments.ToList();
+            return db.Feedbacks.ToList();
         }
 
-        public Payment Get(string id)
+        public Feedback Get(string id)
         {
-            return db.Payments.Find(id);
+            return db.Feedbacks.Find(id);
         }
 
-        public Payment Update(Payment obj)
+        public Feedback Update(Feedback obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

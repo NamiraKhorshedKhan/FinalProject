@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class FeedbackRepo : Repo, IRepo<Feedback, string, Feedback>
+    internal class RatingRepo : Repo, IRepo<Rating, string, Rating>
     {
-        public Feedback Add(Feedback obj)
+        public Rating Add(Rating obj)
         {
-            db.Feedbacks.Add(obj);
+            db.Ratings.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
 
-        public Feedback Add(FeedbackRepo obj)
+        public Rating Add(RatingRepo obj)
         {
             throw new NotImplementedException();
         }
@@ -25,21 +25,21 @@ namespace DAL.Respos
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Feedbacks.Remove(dbobj);
+            db.Ratings.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Feedback> Get()
+        public List<Rating> Get()
         {
-            return db.Feedbacks.ToList();
+            return db.Ratings.ToList();
         }
 
-        public Feedback Get(string id)
+        public Rating Get(string id)
         {
-            return db.Feedbacks.Find(id);
+            return db.Ratings.Find(id);
         }
 
-        public Feedback Update(Feedback obj)
+        public Rating Update(Rating obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

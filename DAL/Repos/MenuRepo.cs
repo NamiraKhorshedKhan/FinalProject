@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class RestaurantRepo : Repo, IRepo<Restaurant, string, Restaurant>
+    internal class MenuRepo : Repo, IRepo<Menu, string, Menu>
     {
-        public Restaurant Add(Restaurant obj)
+        public Menu Add(Menu obj)
         {
-            db.Restaurants.Add(obj);
+            db.Menus.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
 
-        public Restaurant Add(RestaurantRepo obj)
+        public Menu Add(MenuRepo obj)
         {
             throw new NotImplementedException();
         }
@@ -25,21 +25,21 @@ namespace DAL.Respos
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Restaurants.Remove(dbobj);
+            db.Menus.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Restaurant> Get()
+        public List<Menu> Get()
         {
-            return db.Restaurants.ToList();
+            return db.Menus.ToList();
         }
 
-        public Restaurant Get(string id)
+        public Menu Get(string id)
         {
-            return db.Restaurants.Find(id);
+            return db.Menus.Find(id);
         }
 
-        public Restaurant Update(Restaurant obj)
+        public Menu Update(Menu obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

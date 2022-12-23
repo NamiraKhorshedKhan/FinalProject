@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class RatingRepo : Repo, IRepo<Rating, string, Rating>
+    internal class PaymentRepo : Repo, IRepo<Payment, string, Payment>
     {
-        public Rating Add(Rating obj)
+        public Payment Add(Payment obj)
         {
-            db.Ratings.Add(obj);
+            db.Payments.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
 
-        public Rating Add(RatingRepo obj)
+        public Payment Add(PaymentRepo obj)
         {
             throw new NotImplementedException();
         }
@@ -25,21 +25,21 @@ namespace DAL.Respos
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Ratings.Remove(dbobj);
+            db.Payments.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Rating> Get()
+        public List<Payment> Get()
         {
-            return db.Ratings.ToList();
+            return db.Payments.ToList();
         }
 
-        public Rating Get(string id)
+        public Payment Get(string id)
         {
-            return db.Ratings.Find(id);
+            return db.Payments.Find(id);
         }
 
-        public Rating Update(Rating obj)
+        public Payment Update(Payment obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

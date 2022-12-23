@@ -1,4 +1,5 @@
-﻿using DAL.EFs.Models;
+﻿using DAL.EFs;
+using DAL.EFs.Models;
 using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class TokenRepo : Repo, IRepo<Token, string, Token>
+    internal class AdminRepo : Repo, IRepo<Admin, string, Admin>
     {
-        public Token Add(Token obj)
+        public Admin Add(Admin obj)
         {
-            db.Tokens.Add(obj);
+            db.Admins.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
@@ -20,21 +21,21 @@ namespace DAL.Respos
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Tokens.Remove(dbobj);
+            db.Admins.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Token> Get()
+        public List<Admin> Get()
         {
-            return db.Tokens.ToList();
+            return db.Admins.ToList();
         }
 
-        public Token Get(string id)
+        public Admin Get(string id)
         {
-            return db.Tokens.Find(id);
+            return db.Admins.Find(id);
         }
 
-        public Token Update(Token obj)
+        public Admin Update(Admin obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

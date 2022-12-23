@@ -6,35 +6,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class BookingRepo : Repo, IRepo<Booking, string, Booking>
+    internal class CustomerRepo : Repo, IRepo<Customer, string, Customer>
     {
-        public Booking Add(Booking obj)
+        public Customer Add(Customer obj)
         {
-            db.Bookings.Add(obj);
+            db.Customers.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
+        }
+
+        public Customer Add(CustomerRepo obj)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Bookings.Remove(dbobj);
+            db.Customers.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Booking> Get()
+        public List<Customer> Get()
         {
-            return db.Bookings.ToList();
+            return db.Customers.ToList();
         }
 
-        public Booking Get(string id)
+        public Customer Get(string id)
         {
-            return db.Bookings.Find(id);
+            return db.Customers.Find(id);
         }
 
-        public Booking Update(Booking obj)
+        public Customer Update(Customer obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

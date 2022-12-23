@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="DTOs\AdminDTO.cs" />
     <Compile Include="DTOs\BookingDTO.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />

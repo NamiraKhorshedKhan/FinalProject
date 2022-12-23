@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DataAccessFactory.cs" />
     <Compile Include="EFs\Context.cs" />
     <Compile Include="EFs\Models\Admin.cs" />
     <Compile Include="EFs\Models\Booking.cs" />
@@ -72,18 +72,18 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Respos\AdminRepo.cs" />
-    <Compile Include="Respos\BookingRepo.cs" />
-    <Compile Include="Respos\CustomerRepo.cs" />
-    <Compile Include="Respos\FeedbackRepo.cs" />
-    <Compile Include="Respos\LoginRepo.cs" />
-    <Compile Include="Respos\MenuRepo.cs" />
-    <Compile Include="Respos\PaymentRepo.cs" />
-    <Compile Include="Respos\RatingRepo.cs" />
-    <Compile Include="Respos\Repo.cs" />
-    <Compile Include="Respos\RestaurantRepo.cs" />
-    <Compile Include="Respos\ReviewRepo.cs" />
-    <Compile Include="Respos\TokenRepo.cs" />
+    <Compile Include="Repos\AdminRepo.cs" />
+    <Compile Include="Repos\BookingRepo.cs" />
+    <Compile Include="Repos\CustomerRepo.cs" />
+    <Compile Include="Repos\FeedbackRepo.cs" />
+    <Compile Include="Repos\LoginRepo.cs" />
+    <Compile Include="Repos\MenuRepo.cs" />
+    <Compile Include="Repos\PaymentRepo.cs" />
+    <Compile Include="Repos\RatingRepo.cs" />
+    <Compile Include="Repos\Repo.cs" />
+    <Compile Include="Repos\RestaurantRepo.cs" />
+    <Compile Include="Repos\ReviewRepo.cs" />
+    <Compile Include="Repos\TokenRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

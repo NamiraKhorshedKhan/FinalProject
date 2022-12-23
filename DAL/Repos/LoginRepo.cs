@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class LoginRepo : Repo, IRepo<Login, string, Login>
+    internal class LoginRepo : Repo, IRepo<Login, string, Login> , IAuth
     {
         public Login Add(Login obj)
         {
@@ -45,6 +45,15 @@ namespace DAL.Respos
             db.Entry(dbobj).CurrentValues.SetValues(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
+        }
+        public Login Authenticate(string username, string pass)
+        {
+            var user = db.Logins.FirstOrDefault(
+                    u =>
+                    u.Username.Equals(username) &&
+                    u.Password.Equals(pass)
+                );
+            return user;
         }
     }
 }

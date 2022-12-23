@@ -6,40 +6,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
-    internal class MenuRepo : Repo, IRepo<Menu, string, Menu>
+    internal class TokenRepo : Repo, IRepo<Token, string, Token>
     {
-        public Menu Add(Menu obj)
+        public Token Add(Token obj)
         {
-            db.Menus.Add(obj);
+            db.Tokens.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
-        }
-
-        public Menu Add(MenuRepo obj)
-        {
-            throw new NotImplementedException();
         }
 
         public bool Delete(string id)
         {
             var dbobj = Get(id);
-            db.Menus.Remove(dbobj);
+            db.Tokens.Remove(dbobj);
             return db.SaveChanges() > 0;
         }
 
-        public List<Menu> Get()
+        public List<Token> Get()
         {
-            return db.Menus.ToList();
+            return db.Tokens.ToList();
         }
 
-        public Menu Get(string id)
+        public Token Get(string id)
         {
-            return db.Menus.Find(id);
+            return db.Tokens.Find(id);
         }
 
-        public Menu Update(Menu obj)
+        public Token Update(Token obj)
         {
             var dbobj = Get(obj.Id);
             db.Entry(dbobj).CurrentValues.SetValues(obj);

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Respos
+namespace DAL.Repos
 {
     internal class ReviewRepo: Repo, IRepo<Review, string, Review>
     {
