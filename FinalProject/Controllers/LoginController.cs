@@ -10,9 +10,8 @@ using System.Web.Http.Cors;
 
 namespace FinalProject.Controllers
 {
-    //[RoutePrefix("api/login")]
     [EnableCors("*", "*", "*")]
-    public class LoginsController : ApiController
+    public class LoginController : ApiController
     {
         [Route("api/login/all")]
         public HttpResponseMessage Get()
@@ -27,6 +26,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [Route("api/login/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -40,20 +40,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        [Route("api/login/{id}/logins")]
-        [HttpGet]
-        public HttpResponseMessage GetCtLogin(string id)
-        {
-            try
-            {
-                var data = LoginService.Get(id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
+       
         [Route("api/login/add")]
         [HttpPost]
         public HttpResponseMessage Add(LoginDTO ct)
@@ -76,12 +63,12 @@ namespace FinalProject.Controllers
             try
             {
                 LoginService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "login updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "User updated successfully");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error updating login", e);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error updating user", e);
             }
         }
 
@@ -92,12 +79,42 @@ namespace FinalProject.Controllers
             try
             {
                 LoginService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "login delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "User deleted successfully");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error deleting login", e);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error deleting user", e);
+            }
+        }
+
+        [Route("api/login/{id}/token")]
+        [HttpGet]
+        public HttpResponseMessage GetTokens(string id)
+        {
+            try
+            {
+                var data = LoginService.GetwithTokens(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Route("api/login/{id}/feedback")]
+        [HttpGet]
+        public HttpResponseMessage GetFeedbacks(string id)
+        {
+            try
+            {
+                var data = LoginService.GetwithFeedbacks(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 

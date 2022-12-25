@@ -9,11 +9,9 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace FinalProject.Controllers
-
 {
-    //[RoutePrefix("api/booking")]
     [EnableCors("*", "*", "*")]
-    public class BookingsController : ApiController
+    public class BookingController : ApiController
     {
         [Route("api/booking/all")]
         public HttpResponseMessage Get()
@@ -28,6 +26,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [Route("api/booking/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -41,20 +40,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-        [Route("api/booking/{id}/bookings")]
-        [HttpGet]
-        public HttpResponseMessage GetCtBooking(string id)
-        {
-            try
-            {
-                var data = BookingService.Get(id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
+
         [Route("api/booking/add")]
         [HttpPost]
         public HttpResponseMessage Add(BookingDTO ct)
@@ -78,7 +64,7 @@ namespace FinalProject.Controllers
             try
             {
                 BookingService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "booking updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Booking updated successfully");
             }
             catch (Exception e)
             {
@@ -94,12 +80,27 @@ namespace FinalProject.Controllers
             try
             {
                 BookingService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "booking delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Booking delete successfully");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error deleting booking", e);
+            }
+        }
+
+        [Route("api/booking/{id}/payment")]
+        [HttpGet]
+        public HttpResponseMessage GetPayments(string id)
+        {
+            try
+            {
+                var data = BookingService.GetwithPayments(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
     }

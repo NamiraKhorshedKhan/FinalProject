@@ -12,12 +12,8 @@ using System.Web.Http.Cors;
 
 namespace FinalProject.Controllers
 {
-
-
-
-    //[RoutePrefix("api/payment")]
     [EnableCors("*", "*", "*")]
-    public class PaymentsController : ApiController
+    public class PaymentController : ApiController
     {
         [Route("api/payment/all")]
         public HttpResponseMessage Get()
@@ -59,12 +55,7 @@ namespace FinalProject.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-
-
-
         }
-
-
 
         [Route("api/payment/update/{id}")]
         [HttpPut]
@@ -73,7 +64,7 @@ namespace FinalProject.Controllers
             try
             {
                 PaymentService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "payment updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Payment updated successfully");
             }
             catch (Exception e)
             {
@@ -82,8 +73,6 @@ namespace FinalProject.Controllers
             }
         }
 
-
-
         [Route("api/payment/delete/{id}")]
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
@@ -91,7 +80,7 @@ namespace FinalProject.Controllers
             try
             {
                 PaymentService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "payment delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Payment deleted successfully");
             }
             catch (Exception e)
             {

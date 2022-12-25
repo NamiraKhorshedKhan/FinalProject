@@ -10,9 +10,8 @@ using System.Web.Http.Cors;
 
 namespace FinalProject.Controllers
 {
-    //[RoutePrefix("api/admin")]
     [EnableCors("*", "*", "*")]
-    public class AdminsController : ApiController
+    public class AdminController : ApiController
     {
         [Route("api/admin/all")]
         public HttpResponseMessage Get()
@@ -63,7 +62,7 @@ namespace FinalProject.Controllers
             try
             {
                 AdminService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "admin updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Admin updated successfully");
             }
             catch (Exception e)
             {
@@ -79,7 +78,7 @@ namespace FinalProject.Controllers
             try
             {
                 AdminService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "admin delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Admin deleted successfully");
             }
             catch (Exception e)
             {

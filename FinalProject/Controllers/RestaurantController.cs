@@ -5,82 +5,161 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace FinalProject.Controllers
 {
-    
-    public class RestaurantController: ApiController
+    [EnableCors("*", "*", "*")]
+    public class RestaurantController : ApiController
     {
-        [Route("api/Restaurants")]
-        [HttpGet]
+        [Route("api/restaurant/all")]
         public HttpResponseMessage Get()
         {
-            var data = RestaurantService.Get();
-            return Request.CreateResponse(HttpStatusCode.OK, data);
+            try
+            {
+                var data = RestaurantService.Get();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
-
-        [Route("api/Restaurants/{id}")]
-        [HttpGet]
+        [Route("api/restaurant/{id}")]
         public HttpResponseMessage Get(string id)
         {
-            var data = RestaurantService.Get(id);
-            return Request.CreateResponse(HttpStatusCode.OK, data);
+            try
+            {
+                var data = RestaurantService.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
 
-
-        [Route("api/Restaurants/add")]
+        [Route("api/restaurant/add")]
         [HttpPost]
-        public HttpResponseMessage Add(RestaurantDTO Restaurant)
+        public HttpResponseMessage Add(RestaurantDTO ct)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var data = RestaurantService.Add(Restaurant);
-                if (data != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, data);
-                }
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                var data = RestaurantService.Add(ct);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
             }
-            else
+            catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-
         }
 
-        [Route("api/Restaurants/Delete/{id}")]
+        [Route("api/restaurant/update/{id}")]
+        [HttpPut]
+        public HttpResponseMessage Put(RestaurantDTO ct)
+        {
+            try
+            {
+                RestaurantService.Update(ct);
+                return Request.CreateResponse(HttpStatusCode.OK, "Restaurant updated successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error updating restaurant", e);
+            }
+        }
+
+        [Route("api/restaurant/delete/{id}")]
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
         {
             try
             {
                 RestaurantService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "Restaurant remove successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Restaurant deleted successfully");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error removing Restaurant", e);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error deleting restaurant", e);
             }
         }
 
-        [Route("api/Restaurants/Update/{id}")]
-        [HttpPut]
-        public HttpResponseMessage Put(RestaurantDTO cat)
+        [Route("api/restaurant/{id}/menu")]
+        [HttpGet]
+        public HttpResponseMessage GetMenus(string id)
         {
             try
             {
-                RestaurantService.Update(cat);
-                return Request.CreateResponse(HttpStatusCode.OK, "Restaurant updated successfully");
+                var data = RestaurantService.GetwithMenus(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error updating Restaurant", e);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 
+        [Route("api/restaurant/{id}/booking")]
+        [HttpGet]
+        public HttpResponseMessage GetBookings(string id)
+        {
+            try
+            {
+                var data = RestaurantService.GetwithBookings(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Route("api/restaurant/{id}/payment")]
+        [HttpGet]
+        public HttpResponseMessage GetPayments(string id)
+        {
+            try
+            {
+                var data = RestaurantService.GetwithPayments(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Route("api/restaurant/{id}/review")]
+        [HttpGet]
+        public HttpResponseMessage GetReviews(string id)
+        {
+            try
+            {
+                var data = RestaurantService.GetwithReviews(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Route("api/restaurant/{id}/rating")]
+        [HttpGet]
+        public HttpResponseMessage GetRatings(string id)
+        {
+            try
+            {
+                var data = RestaurantService.GetwithRatings(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }

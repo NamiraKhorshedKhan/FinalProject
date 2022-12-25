@@ -8,13 +8,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-
-
 namespace FinalProject.Controllers
 {
-    //[RoutePrefix("api/menu")]
     [EnableCors("*", "*", "*")]
-    public class MenusController : ApiController
+    public class MenuController : ApiController
     {
         [Route("api/menu/all")]
         public HttpResponseMessage Get()
@@ -56,12 +53,7 @@ namespace FinalProject.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-
-
-
         }
-
-
 
         [Route("api/menu/update/{id}")]
         [HttpPut]
@@ -70,7 +62,7 @@ namespace FinalProject.Controllers
             try
             {
                 MenuService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "menu updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Menu updated successfully");
             }
             catch (Exception e)
             {
@@ -79,8 +71,6 @@ namespace FinalProject.Controllers
             }
         }
 
-
-
         [Route("api/menu/delete/{id}")]
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
@@ -88,7 +78,7 @@ namespace FinalProject.Controllers
             try
             {
                 MenuService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "menu delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Menu deleted successfully");
             }
             catch (Exception e)
             {

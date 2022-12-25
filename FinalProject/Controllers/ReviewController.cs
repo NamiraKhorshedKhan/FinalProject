@@ -8,16 +8,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-
-
 namespace FinalProject.Controllers
 {
-
-
-
-    //[RoutePrefix("api/review")]
     [EnableCors("*", "*", "*")]
-    public class ReviewsController : ApiController
+    public class ReviewController : ApiController
     {
         [Route("api/review/all")]
         public HttpResponseMessage Get()
@@ -32,6 +26,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [Route("api/review/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -60,11 +55,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-
-
         }
-
-
 
         [Route("api/review/update/{id}")]
         [HttpPut]
@@ -73,7 +64,7 @@ namespace FinalProject.Controllers
             try
             {
                 ReviewService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "review updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Review updated successfully");
             }
             catch (Exception e)
             {
@@ -82,8 +73,6 @@ namespace FinalProject.Controllers
             }
         }
 
-
-
         [Route("api/review/delete/{id}")]
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
@@ -91,7 +80,7 @@ namespace FinalProject.Controllers
             try
             {
                 ReviewService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "review delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Review deleted successfully");
             }
             catch (Exception e)
             {

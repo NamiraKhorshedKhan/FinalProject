@@ -12,12 +12,8 @@ using System.Web.Http.Cors;
 
 namespace FinalProject.Controllers
 {
-
-
-
-    //[RoutePrefix("api/rating")]
     [EnableCors("*", "*", "*")]
-    public class RatingsController : ApiController
+    public class RatingController : ApiController
     {
         [Route("api/rating/all")]
         public HttpResponseMessage Get()
@@ -59,12 +55,7 @@ namespace FinalProject.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-
-
-
         }
-
-
 
         [Route("api/rating/update/{id}")]
         [HttpPut]
@@ -73,7 +64,7 @@ namespace FinalProject.Controllers
             try
             {
                 RatingService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "rating updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Rating updated successfully");
             }
             catch (Exception e)
             {
@@ -82,8 +73,6 @@ namespace FinalProject.Controllers
             }
         }
 
-
-
         [Route("api/rating/delete/{id}")]
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
@@ -91,7 +80,7 @@ namespace FinalProject.Controllers
             try
             {
                 RatingService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "rating delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Rating deleted successfully");
             }
             catch (Exception e)
             {

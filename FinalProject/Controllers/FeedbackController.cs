@@ -8,14 +8,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-
-
 namespace FinalProject.Controllers
 {
-
-    //[RoutePrefix("api/feedback")]
     [EnableCors("*", "*", "*")]
-    public class FeedbacksController : ApiController
+    public class FeedbackController : ApiController
     {
         [Route("api/feedback/all")]
         public HttpResponseMessage Get()
@@ -30,6 +26,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [Route("api/feedback/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -58,6 +55,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [Route("api/feedback/update/{id}")]
         [HttpPut]
         public HttpResponseMessage Put(FeedbackDTO ct)
@@ -65,7 +63,7 @@ namespace FinalProject.Controllers
             try
             {
                 FeedbackService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "feedback updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Feedback updated successfully");
             }
             catch (Exception e)
             {
@@ -81,7 +79,7 @@ namespace FinalProject.Controllers
             try
             {
                 FeedbackService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "feedback delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Feedback deleted successfully");
             }
             catch (Exception e)
             {

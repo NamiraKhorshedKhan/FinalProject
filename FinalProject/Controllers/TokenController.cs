@@ -8,16 +8,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-
-
 namespace FinalProject.Controllers
 {
-
-
-
-    //[RoutePrefix("api/token")]
     [EnableCors("*", "*", "*")]
-    public class TokensController : ApiController
+    public class TokenController : ApiController
     {
         [Route("api/token/all")]
         public HttpResponseMessage Get()
@@ -32,6 +26,7 @@ namespace FinalProject.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
         [Route("api/token/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -59,12 +54,7 @@ namespace FinalProject.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
-
-
-
         }
-
-
 
         [Route("api/token/update/{id}")]
         [HttpPut]
@@ -73,7 +63,7 @@ namespace FinalProject.Controllers
             try
             {
                 TokenService.Update(ct);
-                return Request.CreateResponse(HttpStatusCode.OK, "token updated successfully");
+                return Request.CreateResponse(HttpStatusCode.OK, "Token updated successfully");
             }
             catch (Exception e)
             {
@@ -82,8 +72,6 @@ namespace FinalProject.Controllers
             }
         }
 
-
-
         [Route("api/token/delete/{id}")]
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
@@ -91,7 +79,7 @@ namespace FinalProject.Controllers
             try
             {
                 TokenService.Delete(id);
-                return Request.CreateResponse(HttpStatusCode.Created, "token delete successfully");
+                return Request.CreateResponse(HttpStatusCode.Created, "Token deleted successfully");
             }
             catch (Exception e)
             {
