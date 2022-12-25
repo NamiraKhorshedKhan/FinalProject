@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace FinalProject.Controllers
 {
-    public class RestaurantController : ApiController
+    public class BookingController : ApiController
     {
     }
 }
