@@ -118,5 +118,19 @@ namespace FinalProject.Controllers
             }
         }
 
+        public HttpResponseMessage GetCount(string id)
+        {
+
+            try
+            {
+                var data = LoginService.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
     }
 }

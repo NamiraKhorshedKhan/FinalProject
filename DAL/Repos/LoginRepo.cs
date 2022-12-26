@@ -8,18 +8,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class LoginRepo : Repo, IRepo<Login, string, Login> , IAuth
+    internal class LoginRepo : Repo, IRepo<Login, string, Login> , IAuth //, ICount<Login, string, Login>
     {
         public Login Add(Login obj)
         {
             db.Logins.Add(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
-        }
-
-        public Login Add(LoginRepo obj)
-        {
-            throw new NotImplementedException();
         }
 
         public bool Delete(string id)
@@ -55,5 +50,16 @@ namespace DAL.Repos
                 );
             return user;
         }
+
+        /*public Login Count()
+        {
+            int login = db.Logins.Count();
+            return login;
+        }
+
+        public Login Count(string id)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }
